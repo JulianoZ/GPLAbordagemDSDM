@@ -1,0 +1,16 @@
+datatype int
+datatype string
+datatype float
+datatype double
+datatype bool
+datatype dateTime
+datatype void
+datatype list<E>
+datatype linkedHashMap<E, T>
+datatype img  //Android and AR
+datatype Task //AR
+//datatype empty //used to define functions without return type
+
+
+
+

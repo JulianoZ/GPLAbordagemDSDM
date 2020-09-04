@@ -1,0 +1,3106 @@
+deploy Ecommerce{
+			
+	//-----------Model
+	Product: Android
+	Product: iOS	
+	Product: Web	
+    User: Android
+    User: iOS 
+    User: Web    
+	UserDAO: Android
+	UserDAO: iOS
+	UserDAO: Web 
+	
+	ProductDAO: Android	
+	ProductDAO: iOS 	
+	
+	
+	OrderFinalized: Android
+	OrderFinalized: Web
+	OrderFinalized: iOS
+	
+	
+	OrderFinalizedDAO: Android
+	OrderFinalizedDAO: iOS 
+	
+	
+	Order: Android
+	Order: iOS
+	Order: Web
+	
+	OrderDAO: Android	
+	OrderDAO: Web
+	OrderDAO: iOS 
+		
+	Connection: Android
+	Connection: iOS
+	Connection: Web
+	
+	//GPSData: Android
+	//GPSData: iOS
+	//GPS: Android
+	//GPS: iOS
+	//GPSAdapter: AndroidController
+	
+    MainActivityWatch: AndroidSmartWatch	
+    ProductWatchAdapter: AndroidController		
+	
+
+
+	
+	//GPS: iOS			
+	
+	//-----------Controller
+
+    ProductController: WebController
+	ProductReducedController: AndroidController	
+	ProductReducedController: iOSController
+	
+	UserController: AndroidController
+	UserController: WebController
+	UserController: iOSController	
+	
+
+	CartControllerServerPersistence: WebController
+	CartControllerServerPersistence: iOSController
+	CartControllerServerPersistence: AndroidController  
+	
+	CartControllerHashMapPersistence: AndroidController
+	
+	
+
+	OrderFinalizedAdm: WebController
+    OrderFinalizedAdm: AndroidController
+	OrderFinalizedAdm: iOSController
+	
+	
+	GPSPosition: AndroidController
+	GPSPosition: iOSController		
+	
+	MainPage: AugmentedReality	
+	ImageControl: AugmentedReality
+	
+	
+	//Controller Adapter Android
+	ProductAdapter: AndroidController
+	UserAdapter: AndroidController
+
+	OrderAdapter: AndroidController
+	OrderFinalizedAdapter: AndroidController	
+	
+	OrderedFinalizedGrid: WebController
+	CartControllerLocalPersistenceHashMap: AndroidController
+	CartControllerLocalPersistence: AndroidController
+	CartControllerLocalPersistence: iOSController	
+	
+	Controller: Android
+	Controller: Web
+	Controller: iOS	
+	
+	
+	
+	
+	//Unit Test Case
+	BankAccount: Web
+	BankAccount: Android	
+	BankAccount: iOS
+	
+	BankAccountTestV2: UnitTestingWeb
+	BankAccountTestV2: UnitTestingAndroid
+	BankAccountTestV2: UnitTestingiOS
+	
+	BankAccountTestV1:  UnitTestingAndroid
+
+
+}
+
+
+//------------------------Model class (Server side) ---------------------------------------------
+
+
+
+
+
+
+class OrderFinalized{
+	
+	id: int
+	valueTotal: float
+	client_idClients: int
+	dateTime: dateTime
+	zipCodeDelivery_idZipCodeDelivery: int
+	valueChange: float
+	payment_idPayment: int
+	statusOrdered: int
+	statusOrderLocal: int
+	note: string
+	tableNumber: int
+	checkout: bool
+	primaryKey: int 
+	user: User
+
+
+}
+
+
+class OrderFinalizedDAO{	
+	
+	usesGlobal <OrderFinalized> UpdateObject(e: OrderFinalized): string
+	usesGlobal <OrderFinalized> SelectObject(ord: string): list<OrderFinalized>
+	usesGlobal <Product> SelectSpecificIdObject(e: Product, id: int): Product
+	usesGlobal <OrderFinalized> InsertObject(e: OrderFinalized): string
+	usesGlobal <OrderFinalized> DeleteObject(e: OrderFinalized): string 	
+	
+	usesGlobal <OrderFinalized> InsertObject2(e: OrderFinalized): string	
+	
+}
+
+/*
+class Order{
+	id: int	
+	product: Product
+	ValueUnit: float
+	Quantity: int
+	ValueTotal: float
+	SectionClient: string
+	OrderFinalized: string
+	DateTimeOrder: dateTime
+	StatusFinalized: bool
+	OrderFinalized_idOrderFinalized: int
+	ProductDelivered: bool
+}
+
+*/
+
+
+class Order extends Product{
+	id: int
+	Product_idProduct: int
+	product: Product
+	ValueUnit: float
+	Quantity: int
+	ValueTotal: float
+	SectionClient: string
+	OrderFinalized: string
+	DateTimeOrder: dateTime
+	StatusFinalized: bool
+	OrderFinalized_idOrderFinalized: int
+	ProductDelivered: bool
+}
+
+
+
+
+
+
+class OrderDAO{	
+	
+	
+	operation OrderDAO(id: int, j: string){ 
+		  
+	}
+	
+	operation addValues(v1: int, v2: int): int{
+		total: int
+		total := v1 + v2
+		return total
+	}
+	
+	operation teste(id: int, j: string): string{
+		objProd: Product 
+		teste: string 
+		teste := 20   
+		listOrder: list<Order>
+		listNumW: list[2]<int, float>
+		listNumW3: list<string>
+		list2: list[2] 
+		listNumW3 := 3
+		listNumW3.add(teste) 
+		
+		
+		
+		teste:=objProd.getNome()
+		
+		//accessData.add(objCl.name)
+		
+		
+		z: int
+		z := 0		
+		using: string
+		
+		
+		While z < listNumW3.size {
+			using := listNumW3[2] 
+			//z := z+1 
+		} 
+		
+		
+		z: int        
+		For z=10,z<1,z-- {      
+	      If(z==2){		
+	        z:=9  
+	      }
+		  e:=z+1
+		}
+		
+		x4: int
+		v: int 
+		For v=1,v>10,v=v+3 { 
+			x4:=x4+1
+		} 
+		
+		
+		While z < 10 {
+			e := 5+2			
+		}
+		
+		Do{
+		e := 5+9			
+		}While z<10 
+		
+		If z<10 && z<20{
+			e := 200+20
+		}ElseIf z<10 {
+			e := 5+9
+		}Else{
+			e := 5+43
+		}
+		
+		
+		return teste
+		
+	}
+	
+	
+	id: int
+	name: string
+	description: string
+	shortDescription: string
+	
+	
+	usesGlobal <Order> UpdateObject(e: Order): string
+	usesGlobal <Order> SelectObject(ord: string): list<Order>
+	usesGlobal <Order> SelectSpecificIdObject(e: Order, id: int): Order
+	usesGlobal <Order> InsertObject(e: Order): string
+	usesGlobal <Order> DeleteObject(e: Order): string	
+
+ 	
+    products: linkedHashMap<Product, int>	
+	operation getHashMapProducts(): linkedHashMap<Product, int>{ 	
+		return products	
+	}
+	
+
+	operation addHashMapProducts(p: Product, quantity: int): void{
+		  products.put(p, quantity) 
+	}	
+
+
+
+
+
+
+	operation OrderInsertCart(idProd: int, quantity: int, sectionClient: int): string{
+		objO: Order
+		objProd: ProductDAO
+		NewQuant: int
+		result: string
+		listOrder: list<Order>
+		x: int
+		ord: string
+		ord := "order by id ASC"
+		id: int
+		id := idProd 
+		
+		//objO.SetSectionClient(sectionClient)		
+		//objO.Product_idProduct := idProd	
+		listOrder := global SelectObject(ord) 
+		For x=0,x<listOrder.size,x++ {
+			objO := listOrder.get(x) 
+			//objO.teste :== list.teste() 
+			If objO.SectionUser == sectionUser && objO.Product_idProduct==idProd {				
+				  objO.id := objO.id
+				  objO.NewQuant := objO.Quantity + 1
+				  objO.ValueTotal := objO.ValueUnit * NewQuant
+				  result := global UpdateObject(objO)				
+			}Else{
+				  objProd = global objProd.SelectSpecificIdObject(objProd, id)
+				  objO.Product_idProduct := objProd.id
+				  objO.ValueUnit := objProd.Price
+				  objO.Quantity := quant
+				  objO.ValueTotal := (quant * objProd.Price)
+				  objO.SectionUser := sectionUser
+				  result := global InsertObject(objO)		
+			}			
+		}		
+		return result
+	}
+	
+
+       operation CalculateTotalValuePurchase(SessionId: string): float{           
+            TotalValue: float
+            ListOrd: list<Order>
+            objO: Order
+            x: int     
+            ord: string
+		    ord := "Order by Product_idProduct ASC "
+            ListOrd := global SelectObject(ord)
+            For x=0,x<listOrder.size,x++ {
+            objO := ListOrd.get(x)
+			If objO.SectionUser == SessionId && objO.StatusFinalized == 1 { 
+				TotalValue += objO.ValueTotal
+			}
+           return TotalValue
+           }           
+        }
+
+}
+
+
+class Product{
+	id: int
+	name: string
+	description: string
+	shortDescription: string	
+	price: float
+    peso: float
+    stock: int	
+    Featured: bool
+    Weight: float
+    Picture1: string
+    Picture2: string
+    SubCategory_idSubCategory: int
+    DateTimeRegister: dateTime
+    AR: bool
+    PictureMap: string   
+    order: Order 
+}
+
+class ProductDAO{    
+    
+	usesGlobal <Product> UpdateObject(e: Product): string	
+	usesGlobal <Product> SelectObject(ord: string): list<Product>
+	usesGlobal <Product> SelectSpecificIdObject(e: Product, id: int): Product
+	usesGlobal <Product> InsertObject(e: Product): string
+	usesGlobal <Product> DeleteObject(e: Product): string  
+	
+	operation ProductListSpecificSubCat(idSubCat: int): list<Product>{
+		objProd: Product
+		listObjProd: list<Product>
+		listObjProdSpec: list<Product>
+		ord: string
+		ord := "Order by name"
+		listObjProd := global SelectObject(ord)					
+		x: int
+		For x=0,x<listObjprod.size,x++ {
+			objProd := listObjProd.get(x)
+			If objProd.SubCategory_idSubCategory == idSubCat {			 
+			   listObjprodSpec.add(objProd)				
+			}			
+		}
+		return listObjProdSpec		
+	}    
+}
+
+
+class User{
+	id: int
+	name: string
+	email: string
+	password: string
+	phone: string
+	cellPhone: string
+	ZipCodeDelivery_idZipCodeDelivery: int
+	number: string
+	complement: string
+	statusUser: bool
+	dataTime: dateTime
+		
+}
+	
+class UserDAO{	
+	
+	usesGlobal <User> UpdateObject(e: User): string
+	usesGlobal <User> SelectObject(ord: string): list<User>
+	usesGlobal <User> SelectSpecificIdObject(e: User, id: int): User
+	usesGlobal <User> InsertObject(e: User): string
+	usesGlobal <User> DeleteObject(e: User): string  	
+	
+	operation AuthenticationCli(cli: User): list<string>{
+		objCl: User
+		accessData: list<string>		
+		listObjCli: list<User>
+		ord: string
+		ord := "Order by id"
+		listObjCli := global SelectObject(ord)		
+		x: int
+		status: bool
+		For x=0,x<listObjCli.size,x++ {
+			objCl := listObjCli.get(x)
+			If objCl.email == cli.email && objCl.password == cli.password {	
+			   status := "true"		 
+			   accessData.add(objCli.id)
+			   accessData.add(objCli.name)
+			   accessData.add(status)					
+			}Else{
+			   status := "false"
+			   objCl.name := "Error"		 
+			   accessData.add(objCl.name)
+			   accessData.add(status)				
+			}			
+		}
+		return accessData
+	}	
+}
+
+class Category{
+	id: int
+	categoryName: string
+	picture: string  	
+}
+
+class CategoryDAO{
+	ord: string
+	ord := ""
+	usesGlobal <Category> SelectObject(ord: string): list<Category>	
+}
+
+class SubCategory{
+	id: int
+	subCategoryName: string
+	Category_idCategory: int
+}
+
+class SubCategoryDAO{
+	ord: string
+	ord := ""
+	usesGlobal <SubCategory> SelectObject(ord: string): list<SubCategory>	
+}
+
+
+
+
+//---------------------Connection class---------------------
+class Connection{
+	usesGlobalDetails <DBConf> DBConnection
+}
+
+class DBConf {
+	ecommerce: string //Configure the name of SQLite database
+	db_rest_user: string
+	restCommerce2019: string
+	MYSQL5011: string
+	Smarterasp: string
+	net: string	
+}
+
+
+//------------------------Model class (Server side) ---------------------------------------------
+
+
+
+//------------------------Controller class ---------------------------------------------
+
+//-----------------------GPS Position
+class GPSPosition{	
+	dataRealLocationList: list<string>
+	
+	usesGlobalDetails <GPSPositionGetDataLocation> ControllerGPS
+	
+	usesGlobal <GPSPositionGetDataLocation> getLocation(): list<string>
+	
+	operation useData(): void{ 
+		x: int
+		data: string
+		For x=0,x<dataRealLocationList.size,x++ {
+			data := dataRealLocationList.get(x)	
+		}	
+	}	
+}
+
+class GPSPositionGetDataLocation{
+	latitude: string
+	longitude: string
+	/*
+    provider: Return the name of provider that generated this fix
+    accuracy: Return accuracy in meters
+    altitude: Return the altitude in meters if available	 
+	 */
+}
+
+
+
+//------------------------
+
+class TCPClient{ //sockets Client
+   usesGlobal Send_recv(message: string): string 
+}
+
+
+class ProductController{	//FullData -> ProductFullController
+
+
+	
+usesGlobalDetails <Product, ProductAdapterConfData, ProductControllerList, ProductConfMethod> ControllerDetailsGrid
+
+    operation populateList(): void{
+       objProd: ProductDAO 
+	   objCat: CategoryDAO
+	   objSubCat: SubCategoryDAO		
+	   
+	   ord: string
+	   ord := "Order by name "		
+	   dataListProduct := global objProd.SelectObject(ord)
+	   dataListCategory := global objCat.SelectObject(ord)
+	   dataListSubCategory := global objSubCat.SelectObject(ord)    	
+    }    
+ }
+
+
+//------------------------
+class ProductReducedController{  // -> ProductReducedController. Generate data grid system for product. Create the controller that return only product list (iOS and Android)		
+	usesGlobalDetails <Product, ProductAdapterConfData, ProductCrossControllerList, ProductConfMethod> ControllerDetailsGrid //Tentar pegar os dados para android e swift a partir da classe productadapterconf
+	
+    operation populateList(): void{
+       objProd: ProductDAO            
+	   ord: string
+	   ord := "Order by name " 	
+	   dataListProduct := global objProd.SelectObject(ord)	       	
+    }   
+
+}
+
+//------------------------ Config class to product controller
+class ProductConfMethod{
+	populateList: string
+	void: string
+}
+
+
+class ProductControllerList { //lists used to pass data to View Layer
+	Product: string
+	Category: string
+	SubCategory: string
+}
+
+class ProductCrossControllerList { //lists used to pass data to View Layer
+	Product: string
+	
+}
+
+class ProductAdapterConfData { //Data used to pass to View Layer 
+	name: string
+	price: float
+	img1: img		
+}
+
+class ProductConfMethod{
+	populateList: string
+	void: string 
+}
+
+
+class ProductAdapter extends ArrayAdapter{	 //Adapter
+	usesGlobalDetails <Product> Adapter
+	usesGlobal <Product, ProductAdapterConfData> getView(): View {}	
+	
+	operation onClick(v: View){   //Method call for sending messages via sockets
+		pos: int
+		pos := v.getTag().toString()
+		message: string	
+		message := "selectbyname_" + itens.get(pos).getName(message)
+		objTCP: TCPClient
+		objTCP.Send_recv(message)
+		
+	}
+	
+}
+
+//------------------------
+class UserController{	
+	
+usesGlobalDetails <User, UserAdapterConf, UserControllerList, UserConfMethod> ControllerDetailsGrid
+    operation populateList(): void{
+       objUser: UserDAO 
+	   ord: string
+	   ord := "Order by name "		
+	   dataListUser := global objUser.SelectObject(ord)    	
+    }    
+ }  
+ 
+class UserConfMethod{
+	populateList: string
+	void: string
+} 
+ 
+class UserControllerList { //lists used to pass data to View Layer
+	User: string
+}
+
+class UserAdapterConf { //Data used to pass to View Layer and generate the adapter to Android
+	name: string
+	email: float
+	phone: img	
+}
+
+class UserConfMethod{
+	populateList: string
+	void: string
+	idProd: string
+	quant: string
+	sessionId: string	
+}
+
+ class UserAdapter extends ArrayAdapter{	//Adapter. User -> customer
+	usesGlobalDetails <User> Adapter
+	usesGlobal <User, UserAdapterConf> getView(): View {}	
+}
+
+
+//------------------------ Cart SQLite
+
+
+class CartControllerServerPersistence{
+
+
+	usesGlobalDetails <Order, CartAdapterConf, CartControllerServerPersistenceList, CartConfMethod> ControllerDetailsGrid
+
+	 
+	 operation populateList(sessionId: int, idProd: int, quant: int): void { 
+        objOrder: Order
+        objOrder.setProduct_idProduct(idProd)
+        objOrder.setSectionClient(sessionId)
+        objOrder.setQuantity(quant)
+        objOrderDAO: OrderDAO 
+ 	   	result: string
+	   	If idProd <> 0 && quant <> 0 {	   		
+	   		result := objOrderDAO.InsertObject(objOrder) 	   			   		
+	   	}  
+	   	  
+	   	  
+	   listOrder: list<Order>
+	   ord: string
+	   ord := "Order by id"
+	   listOrder := global objOrderDAO.SelectObject(ord)
+	   listOrderSession: list<Order>
+	   listOrderSession := OrderListSession(sessionId, listOrder)    
+	   //dataListOrder: list<Order> //Don´t need to declare this list because it is declared in the list class  
+	   dataListOrder := insertDataListOrder(listOrderSession) //get the complete data  
+	   //return dataListOrder    	
+    } 
+    
+    
+    
+   operation OrderListSession(sessionId: int, listOrder: list<Order>): list<Order> { //Get the list order of specific user
+	   x: int
+	   listOrderSession: list<Order>
+	   objOrder: Order
+       For x=0,x<listOrder.size,x++ { 
+		 objOrder := listOrder.get(x) 
+		 If objOrder.SectionUser == SessionId {	
+		   listOrderSession.add(objOrder)		  		
+		 }			
+		}
+		return listOrderSession
+    }
+    
+    
+    		
+	operation insertDataListOrder(listOrder: list<Order>): list<Order> { //Insert name and price in listOrder
+		x: int
+		objProdDao: ProductDAO
+		listOrderProduct: list<Order>
+		objOrder: Order
+		objProduct: Product	
+		For x=0,x<listOrder.size,x++ { //Get the name and price from product database and stored in new list CartControllerList
+		  objOrder := listOrder.get(x)		  
+		  objProduct := global objProdDao.SelectSpecificIdObject(objProduct, objOrder.Product_idProduct)
+		  objOrder.setName(objProduct.name)		  
+		  objOrder.setPrice(objProduct.price) 
+		  listOrderProduct.add(objOrder)
+	    }
+	    return listOrderProduct 
+    }  	
+		
+}	
+
+	
+class CartAdapterConf { //Data used to pass to View Layer and generate the adapter to Android
+	name: string
+	price: float
+	Quantity: int	
+}	
+	
+class CartControllerServerPersistenceList{
+	Order: string
+}	
+
+
+class CartConfMethod{
+	populateList: string
+	void: string
+	sessionId: int
+	idProd: int
+	quant: int		
+}
+
+ class OrderAdapter extends BaseAdapter{	//Adapter. User -> customer
+	usesGlobalDetails <Order> Adapter
+	usesGlobal <Order, CartAdapterConf> getView(): View{}   	
+}
+
+
+
+//------------------------ Cart HashMap
+
+class CartControllerHashMapPersistence{
+
+
+	usesGlobalDetails <Order, CartHashMapAdapterConf, CartControllerHashMapPersistenceList, CartHashMapConfMethod> ControllerDetailsGrid
+
+	 
+	 operation populateList(sessionId: int, idProd: int, quant: int): void { 
+        objOrderDAO: OrderDAO 
+ 	   	
+	   	If idProd <> 0 && quant <> 0 {
+	   		objProduct: Product
+	   		objProduct := getProduct(idProd)	   		
+	   		objOrderDAO.addHashMapProducts(objProduct, quant) 	   			   		
+	   	}  	   	
+
+	   	dataListProduct := objOrderDAO.getHashMapProducts()	
+    }   
+   
+    operation getProduct(id: int): Product{
+    	objProduct: Product
+    	objProductDao: ProductDAO
+    	objProduct := global objProductDao.SelectSpecificIdObject(objProduct, id)
+    	return objProduct    	
+    }
+}
+
+
+class CartHashMapAdapterConf { //Data used to pass to View Layer and generate the adapter to Android
+	name: string
+	price: float
+	Quantity: int	
+}	
+	
+class CartControllerHashMapPersistenceList{ //List sent to View layer and way to get the main name of class. Ex:  CartControllerHashMapPersistence  
+	Product: linkedHashMap
+}	
+
+
+class CartHashMapConfMethod{ //Data that arrived in ViewController or Activity 
+	populateList: string
+	void: string
+	sessionId: int
+	idProd: int
+	quant: int		
+}
+
+//-------------Finished Cart Using HashMap
+
+
+
+
+//------------------------
+
+class OrderFinalizedAdm{ //Grid to manager finished order
+
+usesGlobalDetails <OrderFinalized, OrderFinalizedAdapterConf, OrderFinalizedControllerList, OrderFinalizedConfMethod> ControllerDetailsGrid
+
+
+	 operation populateList(idOrderedFinalized: int, statusOrdered: int): void {	 	
+	 	objOrderFinalizedDAO: OrderFinalizedDAO
+	 	listOrderFinalized: list<OrderFinalized>
+	 	ord: string
+	 	ord := "Order by id desc"
+	 	
+	 	listOrderFinalized := global objOrderFinalizedDAO.SelectObject(ord)
+	 	adjustStatusOrder(idOrderedFinalized, statusOrdered, listOrderFinalized)
+	 	dataListOrderFinalized := insertDataListOrder(listOrderFinalized)
+    }
+    
+    
+	operation insertDataListOrder(listOrderFinalized: list<OrderFinalized>): list<Order> { //Insert user data to dataListOrderFinalized
+		x: int
+		listOrderFin: list<OrderFinalized>
+		objUserDao: UserDAO
+		objUser: User
+		objOrderFinalized: OrderFinalized
+		For x=0,x<listOrderFinalized.size,x++ {
+			objOrderFinalized := listOrderFinalized.get(x) 
+			objUser :=	global objUserDao.SelectSpecificIdObject(objUser, objOrderFinalized.client_idClients)
+		    objOrderFinalized.setUser(objUser)	
+		    listOrderFin.add(objOrderFinalized)
+		}
+		 return listOrderFin
+    }   
+
+
+	operation adjustStatusOrder(idOrderedFinalized: int, statusOrdered: int, listOrderFinalized: list<OrderFinalized>): void{ //adjust status order case administrator click to update
+		result: string
+		If(idOrderedFinalized <> 0){
+			x: int
+			objOF: OrderFinalized
+			objFDao: OrderFinalizedDAO
+			For x=0,x<listOrderFinalized.size,x++ {
+		  		objOF := listOrderFinalized.get(x)
+	  			If objOF.idOrderedFinalized == idOrderedFinalized {
+	  				statusOr: int
+	  				statusOr := adjustStatus(statusOrdered) 
+		  			objOF.setStatusOrdered(statusOr)
+	  				result := global objFDao.UpdateObject(objOF)	  					  			
+	  			}	  		
+	    	}
+		
+		}	
+	}
+
+	operation adjustStatus(CurrentStatusOrder: int): int{   //Adjust statusOrdered with a correct status to update in database
+	  	status: int
+	  	status := 0
+	  	If CurrentStatusOrder == 0 { 
+	  		status := 1
+	  	}ElseIf CurrentStatusOrder == 1 {
+	  		status := 2	  	
+	  	}ElseIf CurrentStatusOrder == 2 {
+		  	status := 3	  	
+	  	}ElseIf CurrentStatusOrder == 3 {
+	  		status := 4	  	
+	  	}
+	  	return status
+	}
+
+}
+
+
+class OrderFinalizedAdapterConf { //Data used to pass to View Layer and generate the adapter to Android
+	name: string
+	valueTotal: float
+	date: string	
+}	
+	
+class OrderFinalizedControllerList{
+	OrderFinalized: string
+}	
+
+
+class OrderFinalizedConfMethod{
+	populateList: string
+	void: string
+    idOrderedFinalized: int
+    statusOrdered: int	
+}
+
+ class OrderFinalizedAdapter extends BaseAdapter{	//Adapter. User -> customer
+	usesGlobalDetails <OrderFinalized> Adapter
+	usesGlobal <OrderFinalized, OrderFinalizedAdapterConf> getView(): View{}   	
+}
+
+
+
+//------------------------ RA
+
+class ImageControl{
+	usesGlobal GetDiskImagesAsync(picturesFolder: StorageFolder): list<img>
+	usesGlobal AddImgtoCanvasAsync(canvas: Canvas, image_: img): Task		
+}
+
+class MainPage{	
+	
+	usesGlobal SocketListenerAsync(): void  //sockets server
+	
+	
+	list_imgs: list<img> 
+	teste: img
+	imageControl: ImageControl
+	time: int
+	time := 2000
+	
+	operation MainPage(){
+		this.InitializeComponent()		
+	}
+	
+
+	operation AsyncTaksAsync(): void{
+		c: string
+		storageFolder: StorageFolder
+		storageFolder := KnownFolders.PicturesLibrary 
+		
+		folderName: string
+		folderName := "RALIBRARY" 
+		storageFolder := storageFolder.GetFolderAsync(folderName)
+		list_imgs := imageControl.GetDiskImagesAsync(storageFolder)
+		contador: int
+		contador := 0
+		getImg: img 
+		While true {
+			If contador < list_imgs.size {
+				getImg := list_imgs[contador]
+				imageControl.AddImgtoCanvasAsync(canvas, getImg)				
+							
+			}Else{
+				contador := 0
+				If contador>0 {
+					getImg := list_imgs[contador]
+					imageControl.AddImgtoCanvasAsync(canvas, getImg)
+				}				
+			}
+			contador++
+			Task.Delay(time)
+       }		
+	}		
+}
+
+
+
+
+//------------------------ Revised From Here Up
+
+
+
+
+
+//---------------------GPS Android/iOS--------------------- 
+/*
+class GPSData{
+	
+	
+	operation GPS(){	  	
+	  objGPS: GPS	  
+	  objGPS.lat_rest := 22.693008
+	  objGPS.log_rest := 47.625938	
+	    		
+	}
+			
+	
+	usesGlobal <Location> LocationGPS(): Location
+	usesGlobal RouteData(): void
+	usesGlobal onMapReady(): void	
+}
+
+
+class GPS{
+		
+	lat: double
+	log: double
+	distance: double
+	lat_rest: double
+	log_rest: double
+	
+}
+
+ 	usesGlobal <GPS> onViewCreated(): GPS{	   
+	   usesGlobalDetails <GPS, GPSAdapterConf> ControllerDetails	   		
+	}
+
+
+
+
+class GPSAdapter extends ArrayAdapter{	
+	usesGlobalDetails <GPS> Adapter
+	usesGlobal <GPS, GPSAdapterConf> getView(): View{}	
+}	
+
+
+*/
+
+
+class CartControllerLocalPersistenceHashMap{ //iOS & Android Stored in HashMap
+	usesGlobalDetails <Order, OrderAdapterConf> ControllerDetailsGrid
+	
+	   products: linkedHashMap<Product, int>
+	   usesGlobal <Order> onViewCreated(): Order{
+	   objOrderDAO: OrderDAO	  
+	   products := objOrderDAO.getHashMapProducts(x) 
+	    			   	
+	}
+}
+
+
+
+
+
+
+class OrderedFinalizedGrid{ //Grid to manager finished order. Only for Web	
+	
+usesGlobal <ActionResult, OrderControllerFinalizedGrid> onViewCreated(idOrderFin: int, CurrentStatusOrder: int): ActionResult{	
+	objFDao: OrderFinalizedDAO
+	objOF: OrderFinalized
+	listOrder: list<OrderFinalized>
+	ord: string
+	ord := ""
+	result: string
+	
+	listOrderF : list<OrderFinalized>	
+	
+	If(idOrderFin <> 0){		
+		ord: string
+		ord := ""	
+		x: int
+		listOrderF = global objFDao.SelectObject(ord)
+		For x=0,x<listOrderF.size,x++ {
+	  		objOF := listOrderF.get(x)
+	 		If !objOF.idOrderedFinalized == idOrderFin {
+	  	      	  objOF.idOrderedFinalized := idOrderFin
+	  	      	  objOF.statusOrdered := adjustStatus(CurrentStatusOrder)	  
+	  	      	  result := global objFDao.UpdateObject(objOF) 
+	  	      	  
+	  	      	  If objOF.statusOrderLocal == 1 {
+	  	      	  	objO: Order
+	  	      	  	objO := getObjectOrder(idOrderFin)	
+	  	      	  	objO.ProductDelivered := 0
+	  	      	  	
+	  	      	  	objO.id := idOrderFin 	      	  	
+	  	      	  	result := objFDao.UpdateObject(objO)
+	  	      	  } 	      	  
+	  	      	     
+	  	    } 
+	    }		
+     }
+}
+	
+
+operation getObjectOrder(id: int): Order{
+	objO : Order
+	objODAO : OrderDAO
+	listOrder : list<Order>
+	ord: string
+	ord := ""
+	x: int
+	
+	listOrder := global objODAO.SelectObject(ord)
+	For x=0, x<listOrder.size, x++ {
+		objO := listOrder.get(x)
+		If objO.id == id {
+			break 
+		}
+	} 
+	return objO	
+}	
+
+	
+operation adjustStatus(CurrentStatusOrder: int): int{
+	  status: int
+	  status := 0
+	  If(CurrentStatusOrder == 0){
+	  	status := 1
+	  }ElseIf(CurrentStatusOrder == 1){
+	  	status := 2	  	
+	  }ElseIf(CurrentStatusOrder == 2){
+	  	status := 3	  	
+	  }ElseIf(CurrentStatusOrder == 3){
+	  	status := 4	  	
+	  }
+	  return status
+}
+}
+
+
+class ActionResult{
+	
+}
+
+class OrderControllerFinalizedGrid {
+	listOrderFinalized: list<OrderFinalized>
+}
+
+
+//------------------------
+
+class CartControllerLocalPersistence { //iOS & Android Stored in DataBase
+
+
+	usesGlobalDetails <Order, OrderAdapterConf> ControllerDetails
+	
+	   usesGlobal <Order> onViewCreated(): Order{
+	   objOrderDAO: OrderDAO    	  
+	   listOrder: list<Order>
+	   ord: string
+	   ord := "Order by id"		
+	   listOrder := global objOrderDAO.SelectObject(ord)	    	   
+	   listOrder :=  insertDataListOrder(listOrder) //get the complete data 			   	
+	}
+	
+	
+	operation insertDataListOrder(listOrder: list<Order>): list<Order> { //Insert name and price in listOrder
+		x: int
+		objProdDao: ProductDAO		
+		listOrderProduct: list<Order>
+		objOrder: Order
+		objProduct: Product	
+		For x=0,x<listOrder.size,x++ { //Get the name and price from product database and stored in new list 
+		  objOrder := listOrder.get(x)		  
+		  objProduct := global objProdDao.SelectSpecificIdObject(objProduct, objOrder.Product_idProduct)
+		  objOrder.name := objProduct.name
+		  //objOrder.setName(objProduct.name)
+		  objOrder.price := objProduct.price
+		  listOrderProduct.add(objOrder)
+	    }
+	    return listOrderProduct
+    }    
+}
+
+
+
+
+//------------------------ Task 5
+class MainActivityWatch extends WearableActivity{ //Grid to send product from smartphone to smartwatch
+ usesGlobalDetails <Product, ProductSmartAdapterConf, ProductSmartControllerList, ProductSmartConfMethod> ControllerDetailsGrid	
+	
+	
+usesGlobal onDataChanged(dataEvents: DataEventBuffer): void {}	
+	
+}
+
+class ProductSmartAdapterConf{
+	name: string
+	price: float	
+}
+
+class ProductSmartControllerList{
+	Product: string 
+}
+
+class ProductSmartConfMethod{
+	onDataChanged: string
+	void: string	
+}
+
+
+ class ProductWatchAdapter extends BaseAdapter{	//Adapter. User -> customer
+	usesGlobalDetails <Product> Adapter
+	usesGlobal <Product, ProductSmartAdapterConf> getView(): View{}   	
+}
+//------------------------ Task 5
+
+
+
+
+
+//------------------------
+
+class Controller{
+	
+	usesGlobal <Product> onViewCreated(): ActionResult{ //Indicar a plataforma que deverá gerar.	
+	   objProd: ProductDAO
+	   objCat: CategoryDAO
+	   objSubCat: SubCategoryDAO			
+	   listProduct: list<Product>
+	   listCategory: list<Category>	
+	   listSubCategory: list<SubCategory>
+	   ord: string
+	   ord := "Order by name"		
+	   listProduct := global objProd.SelectObject(ord)
+	   listCategory := global objCat.SelectObject(ord)
+	   listSubCategory := global objSubCat.SelectObject(ord)  	   	   
+	   	   		
+	   usesGlobalDetails <Product, ProductAdapterConfData> ControllerDetails
+	}
+	
+	
+	usesGlobal <User> onViewCreated(): User{
+	   objCli: UserDAO
+	   listUser: list<User>
+	   ord: string
+	   ord := "Order by name"		
+	   listUser := global objCli.SelectObject(ord)
+	   
+	   usesGlobalDetails <User, UserAdapterConf> ControllerDetails	   		
+	}	
+	
+	usesGlobal <Order> onViewCreated(id: int){
+	   objOrder: OrderDAO
+	   listOrder: list<Order>
+	   ord: string
+	   ord := "Order by name"		
+	   listOrder := global objOrder.SelectSpecificIdObject(Order, id)
+	   
+	   usesGlobalDetails <Order, OrderAdapterConf> ControllerDetails	   		
+	}
+	
+	
+
+
+}
+
+
+//-------------Configurations classes
+
+class ProductControllerWeb { //conf. da tupla Web | ProductControllerFullDataVelocityContext
+	listProduct: string
+	listCategory: string
+	listSubCategory: string
+}
+
+
+class GPSAdapterConf{
+	lat: string
+	log: string
+	distance: string	
+}
+
+
+class OrderAdapterConf {
+	name: string
+	price: float
+	Quantity: int
+	Picture1: img	
+}
+
+
+
+
+//-------------Configurations classes
+
+
+
+//Adapter Android
+
+
+
+/*
+class OrderAdapter extends ArrayAdapter{	
+	usesGlobalDetails <Order> Adapter
+	usesGlobal <Order, OrderAdapterConf> getView(): View{}	
+}*/
+//Adapter Android
+
+
+/*
+ class OrderHashMapAdapter extends BaseAdapter{	//Adapter. User -> customer
+	usesGlobalDetails <Product> Adapter
+	usesGlobal <Product, CartHashMapAdapterConf> getView(): View{}   	
+}
+
+*/
+
+
+//------------------------Controller class ---------------------------------------------
+
+
+
+//--------------------------Test Configuration-------------------------------------
+
+
+
+
+class BankAccount{
+	m_customerName: string
+	m_balance: double
+	
+	operation bankAccount(){}
+	
+	operation bankAccount(customerName: string, balance: double){
+		m_customerName := customerName
+		balance := balance
+	}
+	
+	operation debit(amount: double){
+		  //m_balance += amount; // intentionally incorrect code
+            m_balance -= amount  //correct	
+	}	
+	
+	operation credit(amount: double){		  
+            m_balance += amount
+	}	
+	
+	operation main(): void{
+		vCredit: double
+		vDebit: double
+		
+		vCredit := 5.77
+		vDebit := 11.22 
+		
+		ba: BankAccount
+		ba.setM_customerName(m_customerName)
+		ba.setM_balance(m_balance) 
+		
+		ba.credit(vCredit)
+		ba.debit(vDebit)
+		
+		Console.WriteLine(m_balance)
+ 		
+    }		
+}
+
+
+//Using class configuration to test 
+class BankAccountTestV2{	//Unit Test Example
+	
+	usesGlobalDetails UnitTestAnnotation 
+	usesGlobal <TestConfiguration1> assertEqualsClassConfiguration(): void{ 	//para o iOS o nome deve ser testExample() 
+		m_customerName: string
+		m_customerName := "Juliano"
+		beginningBalance: double
+		debitAmount: double
+		expected: double
+		
+		beginningBalance := 11.99
+		debitAmount := 4.55
+		expected := 7.44
+		
+		account :BankAccount
+		account.setM_customerName(m_customerName)
+		account.setM_balance(beginningBalance) 
+		
+		account.Debit(debitAmount)
+		actual : double
+		actual := account.getM_balance()	
+		msg: string
+		msg := "Account not debited correctly" 		
+	}
+}
+
+
+class TestConfiguration1{
+	expected: double
+	actual: double
+	msg: string    	
+}
+
+
+
+
+//Using param configuration to test
+class BankAccountTestV1{	//Unit Test Example	
+	usesGlobal  assertEqualsParam(expected: double, actual: double, msg: string): void{}
+	
+	usesGlobalDetails UnitTestAnnotation 
+	operation balanceTest(): void{
+		m_customerName: string
+		m_customerName := "Juliano"
+		beginningBalance: double
+		debitAmount: double
+		expected: double
+		
+		beginningBalance := 11.99
+		debitAmount := 4.55
+		expected := 7.44
+		
+		account :BankAccount
+		account.setM_customerName(m_customerName)
+		account.setM_balance(beginningBalance) 
+		
+		account.Debit(debitAmount)
+		actual : double
+		actual := account.getM_balance()	
+		msg: string
+		msg := "Account not debited correctly" 	
+		
+		global assertEqualsParam(expected, actual, msg)
+	}
+	
+	
+	usesGlobalDetails UnitTestAnnotation 
+	operation debitTest(): void{
+		m_customerName: string
+		m_customerName := "Juliano"
+		beginningBalance: double
+		debitAmount: double
+		expected: double
+		
+		beginningBalance := 11.99
+		debitAmount := 4.55
+		expected := 7.44
+		
+		account :BankAccount
+		account.setM_customerName(m_customerName)
+		account.setM_balance(beginningBalance) 
+		
+		account.Debit(debitAmount)
+		actual : double
+		actual := account.getM_balance()	
+		msg: string
+		msg := "Account not debited correctly" 	
+		
+		global assertEqualsParam(expected, actual, msg)
+	}	
+	
+	
+	
+}
+
+
+//--------------------------Test Configuration-------------------------------------
+
+
+
+
+//------------------------Utility class ---------------------------------------------
+class GoogleMap{}       //Crossplatform
+class Context {}        //Android
+class View{}            //Android
+class Bundle{}          //Android
+class ActionResult{}    //Web C#
+class ArrayAdapter{}    //Android
+class BaseAdapter{}
+class ViewGroup{}       //Android
+class Activity{}        //Android 
+class Location{}        //Android
+class LatLng{}          //Android
+class ListView{}        //Android
+class AppCompatActivity{} //Android
+class UITextField{}     //iOS
+class UITableView{}     //iOS
+class NSIndexPath{}     //iOS
+class UITableViewCell{} //iOS
+class CLLocationCoordinate2D{} //iOS
+//class ImageControl{}    //RALibrary
+class StorageFolder{}   //RALibrary
+class Canvas{}          //RALibrary
+class DataEventBuffer{} //smartwatch
+class WearableActivity{} //smartwatch
+
+
+
+class LocationData{
+	latitude: string
+	longitude: string		
+}     
+//------------------------Utility class ---------------------------------------------
+
+
+//*******************************************Platform Model.... 
+
+
+
+platform iOS: Swift{	
+	
+//http://www.theappguruz.com/blog/use-sqlite-database-swift	
+
+//------Controller-----------
+implementsGlobalDetails <E> DBConnection{ //Real-time configurable connection through DBConf class
+	''' 
+    static func openConnection() -> OpaquePointer?{
+        var db: OpaquePointer?
+        
+        //creating the database        
+          let fileURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("${E.attributes.get(0).name}.sqlite")
+        
+        
+        //Open connection
+        if sqlite3_open(fileURL.path, &db) != SQLITE_OK {
+            print("error opening database")
+        }
+        return db
+    }
+	'''		
+}
+
+
+/*
+implementsGlobalDetails <E, T> ControllerDetails{
+	'''
+    var list${E.name} : [String]?
+    
+    @IBOutlet weak var searchTextField: UITextField!
+    @IBOutlet var resultsTableView : UITableView!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        searchTextField.addTarget(self, action: "textFieldDidChange:", forControlEvents: UIControlEvents.EditingChanged)
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if list${E.name} == nil {
+            return 0
+        }
+        return list${E.name}!.count
+    }
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    	let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("${E.name}Cell") as! UITableViewCell
+    	let list${E.name} = list${E.name}[indexPath.row]
+
+    	#foreach($f in $T.attributes)
+    	 #if($f.type.name == "img")
+    	  cell.imageView?.image = UIImage(named: list${E.name}.$f.name)
+    	 #else
+    	  cell.textLabel?.text = list${E.name}.$f.name    	 
+    	 #end       
+        #end
+        return cell
+    }     
+	
+	'''	
+	
+} 
+ */
+
+
+
+
+implementsGlobal <E> onViewCreated(textField: UITextField): void{
+	'''
+	    resultsTableView!.reloadData()
+	'''
+		
+} 
+
+
+//------Controller-----------
+
+
+
+
+//------CRUD-----------		
+implementsGlobal <E> InsertObject(e: <E>): string{
+	'''
+        var db: OpaquePointer?
+        db = Connection.openConnection()        
+        var statement: OpaquePointer?	
+        
+        if sqlite3_prepare_v2(db, "insert into product (#foreach($f in $E.attributes)${f.name}#if($foreach.hasNext), #end#end) values (#foreach($f in $E.attributes)?#if($foreach.hasNext), #end#end)", -1, &statement, nil) != SQLITE_OK {
+            let errmsg = String(cString: sqlite3_errmsg(db)!)
+            print("error preparing insert: \(errmsg)")
+        }
+              
+        #foreach($a in $E.attributes)       
+        #set($typeParam = "") 
+        #if(${a.type.name} == "string" || ${a.type.name} == "dateTime")
+          #set($typeParam = "text")
+        #elseif(${a.type.name} == "int")   
+          #set($typeParam = "int")
+        #elseif(${a.type.name} == "float" || ${a.type.name} == "double")  
+          #set($typeParam = "double")
+        #else
+          #set($typeParam = "text")            
+        #end      
+        if sqlite3_bind_${typeParam}(statement, 1, e.${a.name}, -1, SQLITE_TRANSIENT) != SQLITE_OK {
+            let errmsg = String(cString: sqlite3_errmsg(db)!)
+            print("failure binding ${a.name}: \(errmsg)")
+        }        
+	    #end
+	    
+	    var result: String = ""
+        if sqlite3_step(statement) != SQLITE_DONE {
+            let errmsg = String(cString: sqlite3_errmsg(db)!)
+            print("failure inserting table: \(errmsg)")
+            result = errmsg
+        }else{
+        	result="Data inserted into database successfully!"
+        }    
+	    return result
+	'''
+}	
+
+
+implementsGlobal <E> SelectObject(ord: string): list<E>{
+	'''     sharedInstance.database!.open()
+	        let resultSet: FMResultSet! = sharedInstance.database!.executeQuery("SELECT #foreach($f in $E.attributes)${f.name}#if($foreach.hasNext) , #end#end from $E.name", withArgumentsInArray: nil)
+	        let list${E.name} : NSMutableArray = NSMutableArray()
+	        if (resultSet != nil) {
+	        	while resultSet.next() {
+	        		let obj : $E.name = ${E.name}()
+	        		#foreach($f in $E.attributes)
+	        		obj.${f.name} = resultSet.${f.type.name}ForColumn("${f.name}")	        		       		  
+	        		#end	        		
+	        		list${E.name}.addObject(obj)
+	        	}
+	        }
+            sharedInstance.database!.close()
+            return list${E.name}
+	'''
+}
+
+
+
+implementsGlobal <E> UpdateObject(e: <E>): string{
+	'''      
+	        string result;
+	        sharedInstance.database!.open()
+	        let isUpdated = sharedInstance.database!.executeUpdate("UPDATE $E.name SET #foreach($f in $E.attributes)#if($f.name != 'id')${f.name} = ? #if($foreach.hasNext) , #end#end#end WHERE id = ?", withArgumentsInArray: [#foreach($f in $E.attributes)#if($f.name != 'id')e.${f.name}#if($foreach.hasNext), #end#end#end, e.id])
+	        sharedInstance.database!.close()
+	        if (isUpdated){
+	        	result="Data updated into database successfully!"
+	        }else{
+	        	result="Error"
+	        }
+	        return result
+'''
+}
+
+
+
+implementsGlobal <E> DeleteObject(e: <E>): string{
+	'''       
+            string result;
+            sharedInstance.database!.open()
+            let isDeleted = sharedInstance.database!.executeUpdate("DELETE FROM $E.name WHERE id=?", withArgumentsInArray: [e.id])
+            sharedInstance.database!.close()
+	        if (isDeleted){
+	        	result="Data updated into database successfully!"
+	        }else{
+	        	result="Error"
+	        }
+	        return result
+	'''	
+}
+
+
+
+implementsGlobal <E> SelectSpecificIdObject(e: <E>, id: int): <E>{
+	'''    	   
+	        sharedInstance.database!.open()
+	        let resultSet: FMResultSet! = sharedInstance.database!.executeQuery("SELECT #foreach($f in $E.attributes)${f.name}#if($foreach.hasNext) , #end#end from $E.name WHERE id=?", withArgumentsInArray: [e.id])
+	        let obj : $E.name = ${E.name}()
+	        if (resultSet != nil) {       		
+	        		#foreach($f in $E.attributes)    
+	        		  obj.${f.name} = resultSet.${f.type.name}ForColumn("${f.name}")	        		       		  
+	        		#end     			        	
+	        }
+            sharedInstance.database!.close()
+            return obj
+	'''
+}
+
+//------CRUD-----------	
+
+
+
+}
+
+
+
+  
+platform Web: CSharp{ //CRUDCSharp
+
+
+
+	
+	
+	
+	
+
+
+//------Controller-----------
+
+implementsGlobal <E> onViewCreated(): ActionResult{
+'''
+#if($E.name == "Product")
+return View(Tuple.Create(listProduct, listCategory, listSubCategory);
+#elseif ($E.name == "User")
+return View(Tuple.Create(listClient);
+#elseif ($E.name == "Order")
+return View(Tuple.Create(listOrder);
+#end
+'''	
+} 
+
+//------Controller-----------
+
+
+
+
+
+//------CRUD-----------		
+
+implementsGlobalDetails <E> DBConnection{
+	'''
+       private MySqlConnection Conn;
+       public MySqlConnection OpenConnection(){       	
+       	 #set($server=$E.attributes.get(3).name + "." + $E.attributes.get(4).name + "." +  $E.attributes.get(5).name)
+         Conn = new MySqlConnection("server=$server;database=$E.attributes.get(0).name;uid=$E.attributes.get(1).name;pwd=$E.attributes.get(2).name");         
+         Conn.Open();
+         return Conn;   
+       }
+        public void CloseConnection(){
+            Conn.Close();
+       }    	
+	'''	
+}
+
+
+implementsGlobal <E> SelectSqlSpecific(e: <E>, sqlString: string): <E>{
+'''            
+            List<$E.name> listObj = new ArrayList<$E.name>(); 
+            $E.name obj = new $E.name();
+            Connection objCon = new Connection();
+            MySqlConnection Conn = new MySqlConnection();
+            Conn = objCon.OpenConnection();
+            MySqlCommand command = Conn.CreateCommand();
+            command.CommandText = " sqlString ";
+            for(Reader.Read()){
+               #foreach($f in $E.attributes)
+                 obj.$f.name = Reader.["$f.name"];                  
+               #end
+               listObj.add(obj)
+            }
+            return listObj;	
+'''	
+}	
+
+
+implementsGlobal <E> DeleteObject(e: <E>): string{
+	'''       
+            string result;
+            Connection objCon = new Connection();
+            MySqlConnection Conn = new MySqlConnection();
+            Conn = objCon.OpenConnection();
+            MySqlCommand command = Conn.CreateCommand();
+            command.CommandText = "delete from $E.name WHERE id = " & e.id & "";
+            int verify = cmd.ExecuteNonQuery();
+            	if (verify != -1){
+            	  result = "Data deleted into database successfully!";
+            	}else{
+            	  result = "Error";
+            	}
+            	command.Dispose(); 
+            return result;	
+	'''	
+}
+
+
+implementsGlobal <E> SelectObject(ord: string): list<E>{
+	'''     
+	        List<$E.name> listObj = new List<$E.name>(); 
+            $E.name obj = new $E.name();
+            Connection objCon = new Connection();
+            MySqlConnection Conn = new MySqlConnection();
+            Conn = objCon.OpenConnection();
+            MySqlCommand command = Conn.CreateCommand();
+            command.CommandText = "select #foreach($f in $E.attributes)${f.name}#if($foreach.hasNext) , #end#end from $E.name " + ord;
+            for(Reader.Read()){
+            	#set($count = 0)	
+            	#foreach($f in $E.attributes)
+            	  obj.set${f.name.substring(0,1).toUpperCase()}${f.name.substring(1)}(Reader.get${f.type.name.substring(0,1).toUpperCase()}${f.type.name.substring(1)}($count));
+            	  #set($count = $count + 1)                 
+            	#end                 
+                  listObj.add(obj)
+            }
+            return listObj;	
+	
+	'''
+}
+
+
+
+implementsGlobal <E> InsertObject2(e: <E>): string{
+	'''      
+	        string result;
+	        string SQL;
+            Connection objCon = new Connection();
+            MySqlConnection Conn = new MySqlConnection();
+            Conn = objCon.OpenConnection();
+            MySqlCommand cmd = new MySql.Data.MySUsernt.MySqlCommand();
+            try{
+            	#foreach($f in $E.attributes)
+            	 #if($f.name != 'id')
+            	   cmd.Parameters.AddWithValue("@${f.name}", ${f.name});
+            	 #end  
+            	#end
+            	SQL = "insert into $E.name (#foreach($f in $E.attributes)#if($f.name != 'id')${f.name}#if($foreach.hasNext) , #end#end#end) values (#foreach($f in $E.attributes)#if($f.name != 'id')@${f.name}#if($foreach.hasNext) , #end#end#end)";
+            	cmd.Connection = Conn;
+                cmd.CommandText = SQL;
+                cmd.ExecuteNonQuery();
+                result="Data inserted into database successfully!";
+                objCon.CloseConnection();   	
+            }catch (MySql.Data.MySqlClient.MySqlException ex){
+            	result = "Error " + ex.Number + " has occurred: " + ex.Message;
+            }
+            return result	
+	'''
+}
+
+
+implementsGlobal <E> InsertObject(e: <E>): string{
+	/*	
+	        String Return = "";
+            try
+            {   //----------------------------Mysql Connection-----
+                Connection objCon = new Connection();
+                MySqlConnection Conn = new MySqlConnection();
+                Conn = objCon.OpenConnection();
+                MySqlCommand command = new MySqlCommand("Insert into $E.name (#foreach($f in $E.attributes)#if($f.name != 'id')${f.name}#if($foreach.hasNext) , #end#end#end) values (#foreach($f in $E.attributes)#if($f.name != 'id')@${f.name}#if($foreach.hasNext) , #end#end#end)", Conn);
+                command.ExecuteNonQuery();
+                Return = "Data inserted into database successfully!";
+                //----------------------------Mysql Connection-----
+                command.Dispose();
+                objCon.CloseConnection();
+
+            }
+            catch (Exception ex)
+            {
+                Return = ex.Message + ex.Source + ex.InnerException + ex.HelpLink;
+            }
+            return Return;	 */   
+	'''     string result;
+	        string SQL;
+            Connection objCon = new Connection();
+            MySqlConnection Conn = new MySqlConnection();
+            Conn = objCon.OpenConnection();
+            MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand();
+            try{
+            	#foreach($f in $E.attributes)
+            	 #if($f.name != 'id')
+            	   cmd.Parameters.AddWithValue("@${f.name}", e.${f.name});
+            	 #end  
+            	#end
+            	SQL = "insert into $E.name (#foreach($f in $E.attributes)#if($f.name != 'id')${f.name}#if($foreach.hasNext), #end#end#end) values (#foreach($f in $E.attributes)#if($f.name != 'id')@${f.name}#if($foreach.hasNext), #end#end#end)";
+            	cmd.Connection = Conn;
+                cmd.CommandText = SQL;
+                cmd.ExecuteNonQuery();
+                result="Data inserted into database successfully!";
+                objCon.CloseConnection();   	
+            }catch (MySql.Data.MySqlClient.MySqlException ex){
+            	result = "Error " + ex.Number + " has occurred: " + ex.Message;
+            }
+            return result	
+	'''
+}
+
+implementsGlobal <E> UpdateObject(e: <E>): string{
+	'''      
+	        string result;
+            Connection objCon = new Connection();
+            MySqlConnection Conn = new MySqlConnection();
+            Conn = objCon.OpenConnection();
+            try{
+            	string SQL = "UPDATE $E.name SET #foreach($f in $E.attributes)${f.name} = @${f.name} #if($foreach.hasNext) , #end#end WHERE id = e.id";
+            	MySqlCommand cmd = new MySqlCommand(SQL, Conn);
+            	#foreach($f in $E.attributes)
+            	    cmd.Parameters.AddWithValue("@${f.name}", e.${f.name});
+            	#end            
+            	int verify = cmd.ExecuteNonQuery();
+            	if (verify != -1){
+            	  result = "Data updated into database successfully!";
+            	}else{
+            	  result = "Error";
+            	}
+            	command.Dispose();            	          	
+            }catch (MySql.Data.MySqlClient.MySqlException ex){
+            	result = "Error " + ex.Number + " has occurred: " + ex.Message;
+            }
+            return result;	
+	'''
+}
+
+
+
+implementsGlobal <E> SelectSpecificIdObject(e: <E>, id: int, google: GoogleMap): <E>{
+	'''    	        
+            $E.name obj = new ${E.name}();
+            Connection objCon = new Connection();
+            MySqlConnection Conn = new MySqlConnection();
+            Conn = objCon.OpenConnection();
+            MySqlCommand command = Conn.CreateCommand();
+            command.CommandText = "select #foreach($f in $E.attributes)${f.name}  #if($foreach.hasNext) , #end#end from $E.name WHERE id = " & id & "";
+            if(Reader.Read()){
+               #set($count = 0)	
+               #foreach($f in $E.attributes)                 
+                 obj.set${f.name.substring(0,1).toUpperCase()}${f.name.substring(1)} = Reader.get${f.type.name.substring(0,1).toUpperCase()}${f.type.name.substring(1)}($count);
+                 #set($count = $count + 1)	                  
+               #end
+            }
+            return obj;	
+	'''
+}
+
+//------CRUD-----------	
+
+	
+}
+
+
+
+
+
+
+
+platform Android: Java{		
+	
+	
+	
+
+//------GPS-----------
+implementsGlobal <E> LocationGPS(context: Context, act: Activity): <E>{
+	'''     
+        Location location = null;
+        try{
+        if (ContextCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            Permissao_gps(act);
+            locationManager = (LocationManager) context.getSystemService(LOCATION_SERVICE);
+            if (locationManager != null) {
+                location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            }
+            if (location == null) {
+                location = locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);                
+            }
+            if (location != null) {
+
+                objGPS.lat = location.getLatitude();
+                objGPS.lon = location.getLongitude();
+            }
+        }else {
+            ActivityCompat.requestPermissions(act, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                    MY_LOCATION_REQUEST_CODE);
+        }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return location;
+	'''
+}
+
+
+
+implementsGlobal onMapReady(googleMap: GoogleMap): void{
+	'''
+           if (ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION)
+                    == PackageManager.PERMISSION_GRANTED) {
+                Location Local;
+                Context context = getContext();
+                Local = LocationGPS(context,getActivity());
+
+                if(!Permissao_gps(getActivity())){
+                    Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                    startActivity(intent);
+                }
+                googleMap.getUiSettings().setZoomControlsEnabled(true);
+                googleMap.setMyLocationEnabled(true);
+                if (Local != null) {
+                    LatLng locali = new LatLng(lat, lon);
+                    LatLng localirest = new LatLng(lat_rest, lon_rest);
+                    RouteData(locali,localirest);
+                }
+
+            } else {
+                // Request permission.
+                ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                        MY_LOCATION_REQUEST_CODE);
+            }
+'''
+}
+
+implementsGlobal RouteData(p1: LatLng, p2: LatLng): void{
+	'''
+        GoogleDirection.withServerKey("AIzaSyA-GC_E1pM0lVR-BbucHl2NzCFEpiUO14c")
+                .from(p1)
+                .to(p2)
+                .transportMode(TransportMode.DRIVING)
+                .unit(Unit.METRIC)
+                .execute(new DirectionCallback() {
+                    @Override
+                    public void onDirectionSuccess(Direction direction, String rawBody) {
+                        if(direction.isOK()) {
+                            String status = direction.getStatus();                            
+
+                            if(status.equals("OK")){
+                                bool_status = true;
+                            }else bool_status = false;
+
+                            Route route = direction.getRouteList().get(0);
+                            Leg leg = route.getLegList().get(0);;
+
+                            Info distanceInfo = leg.getDistance();
+                            String distance_string = distanceInfo.getText();
+                            String ns = distance_string.replaceAll( "[^0-9-.]", "" ); 
+
+                            objGPS.distance = Double.valueOf(ns);
+                            
+                        } else {                           
+                            String status = direction.getStatus();                            
+                        }
+                    }
+
+                    @Override
+                    public void onDirectionFailure(Throwable t) {
+                        Log.d("ERROR", "ERROR");
+                    }
+                });	
+	'''
+}
+
+
+
+//------GPS-----------
+
+
+
+//------CRUD-----------	
+
+implementsGlobalDetails <E> DBConnection{
+	'''
+    private static final int db_version = 1;
+    private Connection(Context context) {
+        super(context, "$E.attributes.get(0).name", null,db_version );
+    }	
+    private static Connection sInstance;
+    public static synchronized Connection getInstance(Context context) {
+        if (sInstance == null) {
+            sInstance = new Connection(context.getApplicationContext());
+        }
+        return sInstance;
+    }
+    public static int getDataInt(String column, Cursor cursor){ return cursor.getInt(cursor.getColumnIndex(column)); }
+    public static String getDataString(String column, Cursor cursor){ return cursor.getString(cursor.getColumnIndex(column)); }
+    public static float getDataFloat(String column, Cursor cursor){ return cursor.getFloat(cursor.getColumnIndex(column)); }        
+	
+	'''	
+}
+
+
+implementsGlobal <E> DeleteObject(e: <E>, context: Context): string{
+	'''     
+	        string result;  
+	        Connection db = Connection.getInstance(c.getApplicationContext()); 
+	        String query = "DELETE FROM $E.name WHERE id=" + e.getId();  
+	        try{
+	        	db.getWritableDatabase().execSQL(query); 
+	        	db.close(); 
+	        	return="true";
+	        }catch(Exception e){ 
+	        	return="false";
+	        }
+            return result;	
+	'''	
+}
+
+
+implementsGlobal <E> SelectObject(ord: string, context: Context): list<E>{
+	'''     List<$E.name> listObj = new ArrayList<$E.name>(); 
+            Connection db = Connection.getInstance(context.getApplicationContext());
+            String query = "select #foreach($f in $E.attributes)${f.name}#if($foreach.hasNext), #end#end from $E.name " + ord";
+            Cursor c = db.getWritableDatabase().rawQuery(query,null);
+            if(c!=null && c.moveToFirst()){
+            	do {
+            		${E.name} obj = new ${E.name}();
+            		#foreach($f in $E.attributes)
+            		  obj.set${f.name.substring(0,1).toUpperCase()}${f.name.substring(1)}(Connection.getData${f.type.name.substring(0,1).toUpperCase()}${f.type.name.substring(1)}("$f.name", c));                 
+            		#end              		
+            		listObj.add(obj);
+            	}while (c.moveToNext());
+            	c.close();
+            db.close();
+            }
+            return listObj;
+	'''
+}
+
+
+implementsGlobal <E> InsertObject2(e: <E>): string{
+	'''      
+	        string result;
+	        string SQL;
+            Connection objCon = new Connection();
+            MySqlConnection Conn = new MySqlConnection();
+            Conn = objCon.OpenConnection();
+            MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand();
+            try{
+            	#foreach($f in $E.attributes)
+            	 #if($f.name != 'id')
+            	   cmd.Parameters.AddWithValue("@${f.name}", ${f.name});
+            	 #end  
+            	#end
+            	SQL = "insert into $E.name (#foreach($f in $E.attributes)#if($f.name != 'id')${f.name}#if($foreach.hasNext) , #end#end#end) values (#foreach($f in $E.attributes)#if($f.name != 'id')@${f.name}#if($foreach.hasNext) , #end#end#end)";
+            	cmd.Connection = Conn;
+                cmd.CommandText = SQL;
+                cmd.ExecuteNonQuery();
+                result="Data inserted into database successfully!";
+                objCon.CloseConnection();   	
+            }catch (MySql.Data.MySqlClient.MySqlException ex){
+            	result = "Error " + ex.Number + " has occurred: " + ex.Message;
+            }
+            return result	
+	'''
+}
+
+implementsGlobal <E> InsertObject(e: <E>, context: Context): string{
+	'''      
+	       String result;
+	       Connection db = Connection.getInstance(c.getApplicationContext());
+	       String query = "insert into $E.name (#foreach($f in $E.attributes)${f.name}#if($foreach.hasNext), #end#end) values ('" + #foreach($f in $E.attributes)e.get${f.name.substring(0,1).toUpperCase()}${f.name.substring(1)}() #if($foreach.hasNext) + "','" + #end#end + "')";
+	       try{
+	       	db.getWritableDatabase().execSQL(query); db.close(); 
+	       	return="Data updated into database successfully!";
+	       }catch(Exception e){
+	       	return "Error " + e.getMessage();
+	       }
+	       return result;
+	'''
+}
+
+implementsGlobal <E> UpdateObject(e: <E>, context: Context): string{
+	''' 
+	       String result;
+	       Connection db = Connection.getInstance(c.getApplicationContext());
+	       String query = "UPDATE $E.name SET #foreach($f in $E.attributes)${f.name} = " + e.get${f.name.substring(0,1).toUpperCase()}${f.name.substring(1)}()#if($foreach.hasNext) + ", #end#end + " WHERE id = e.id";
+	       try{  
+	       	db.getWritableDatabase().execSQL(query); db.close(); 
+	       	return="Data updated into database successfully!";
+	       }catch(Exception e){
+	       	return "Error " + e.getMessage();
+	       }
+	       return result;	
+	'''
+}
+
+
+implementsGlobal <E> SelectSpecificIdObject(e: <E>, id: int, context: Context): <E>{
+	'''    		        
+	        Connection db = Connection.getInstance(context.getApplicationContext());
+	        String query = "SELECT #foreach($f in $E.attributes)${f.name}#if($foreach.hasNext), #end#end FROM $E.name WHERE id=" + id;
+	        Cursor c = db.getWritableDatabase().rawQuery(query,null);
+	        $E.name obj = new ${E.name}();
+	        if(c!=null && c.moveToFirst()){	           
+               #foreach($f in $E.attributes)
+                 obj.set${f.name.substring(0,1).toUpperCase()}${f.name.substring(1)}(Connection.getData${f.type.name.substring(0,1).toUpperCase()}${f.type.name.substring(1)}("$f.name", c));                 
+               #end        	
+               c.close();
+               db.close();
+            }else{
+               obj = null; 
+            }
+        return obj;	
+
+	'''
+}
+//------CRUD-----------
+
+
+
+	
+	
+}
+
+
+/*    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        getActivity().setTitle("Cardápio");
+        ProductAdapter adapter = new ProductAdapter(
+                getActivity(),
+                R.layout.product_item_file,
+                Controller.ProductsList);
+
+        ListView lv = (ListView)getView().findViewById(R.id.menu_list);
+        lv.setAdapter(adapter);
+
+    } */
+
+
+
+
+
+
+
+platform AndroidController: Java {
+	
+	
+	implementsGlobal Send_recv(message: string): string {
+	'''
+	     static String ip = "10.128.70.58";
+	     String response = new String();
+         try {
+
+             Socket socket = new Socket();
+             SocketAddress socketAddress = new InetSocketAddress(ip, 1209);
+             socket.connect(socketAddress, 1000);
+             if(socket.isConnected()) {
+                 //send
+                 DataOutputStream DOS = new DataOutputStream(socket.getOutputStream());
+                 DOS.write(message.getBytes());
+
+                 //receive
+                 InputStreamReader streamReader = new InputStreamReader(socket.getInputStream());
+                 BufferedReader reader = new BufferedReader(streamReader);
+                 response = reader.readLine();
+
+             }
+
+             Log.d("TCP", "Resposta: " + response);
+
+             return response;
+         } catch (UnknownHostException e) {
+             response= e.toString();
+             Log.e("TCP", "Erro", e);
+         } catch (IOException e) {
+             response= e.toString();
+             Log.e("TCP", "IOException", e);
+             e.printStackTrace();
+         }
+         return "error";
+     }
+	'''
+}
+	
+/*	
+implementsGlobalDetails <E, T> ControllerDetailsGrid{ //Implements basic control class details to build a Grid using Adapter to Android
+	'''    
+    
+    ProductAdapter adapterListView;
+    public static List<${E.name}> dataList  = new ArrayList<${E.name}>();
+    ListView listView;
+    
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        populateList();
+        
+        listView = findViewById(R.id.list_view); 
+        adapterListView = new ProductAdapter(ProductSimpleActivity.this, ProductList,txt_quanty );
+        listView.setAdapter(adapterListView);     
+        
+    }
+	'''
+} 
+*/
+
+
+implementsGlobal <E> getLocation(locValue: Location, data: list<string>): list<String>{
+	'''
+     List<String> dataLocationList = new ArrayList<String>();
+        String getData;
+        for(int x=0;x<data.size();x++) {
+          getData = "";
+          if (locValue != null) {
+          #foreach($a in $E.attributes)
+          if (data.get(x) == "${a.name}") {               
+            getData = String.valueOf(location.get${a.name.substring(0,1).toUpperCase()}${a.name.substring(1)}());               
+          }
+          #end                                	
+          dataLocationList.add(getData);          
+          } else {
+            Log.d("LOCATION", "NULL");
+          }
+        }
+        return dataLocationList;	
+	'''
+}	
+
+
+
+
+implementsGlobalDetails <D> ControllerGPS{
+	'''
+    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
+    private FusedLocationProviderClient mFusedLocationClient;
+    
+    List<String> dataRealLocationList;
+	
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_${D.name.toLowerCase()});
+        
+        LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
+        boolean enabled = service.isProviderEnabled(LocationManager.GPS_PROVIDER);   
+        if (!enabled) {
+            showSettingAlert();
+        }
+       if(checkLocationPermission()) {
+            mFusedLocationClient = LocationServices.getFusedLocationProviderClient(GPSV2Activity.this);
+            mFusedLocationClient.getLastLocation()
+                   #set($index = $L.name.indexOf('GetDataLocation'))
+                   #set($className= $L.name.substring(0, $index))  
+                    .addOnSuccessListener(${className}.this, new OnSuccessListener<Location>() {
+                        @Override
+                        public void onSuccess(Location location) {
+                            // Got last known location. In some rare situations this can be null.
+
+                            if (location != null) {
+                            	
+                            List<String> dataLocationList = new ArrayList<String>();
+                            #foreach($a in $D.attributes)
+                            dataLocationList.add("${a.name}");
+                            #end
+                            
+                            dataRealLocationList = getDataLocation(location, dataLocationList);                    	
+           
+                            }else{Log.d("LOCATION", "NULL");}
+                        }
+                    });
+        } 
+        useData();                    
+        
+     }
+     
+     
+     
+   public boolean checkLocationPermission() {
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
+                new AlertDialog.Builder(this)
+                        .setTitle("Permission GPS")
+                        .setMessage("Please, active your GPS.")
+                        .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //Prompt the user once explanation has been shown
+                                ActivityCompat.requestPermissions(GPSV2Activity.this,
+                                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                                        MY_PERMISSIONS_REQUEST_LOCATION);
+                            }
+                        })
+                        .create()
+                        .show();
+            } else {
+                // No explanation needed, we can request the permission.
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        MY_PERMISSIONS_REQUEST_LOCATION);
+            }
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+
+    public void showSettingAlert()
+    {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(GPSV2Activity.this);
+        alertDialog.setTitle("GPS setting!");
+        alertDialog.setMessage("GPS isn't active, would like to enable?");
+        alertDialog.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                #set($index = $L.name.indexOf('GetDataLocation'))
+                #set($className= $L.name.substring(0, $index))                   
+                ${className}.this.startActivity(intent);
+            }
+        });
+        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        alertDialog.show();
+    }     
+        
+        
+        
+        	
+	
+	
+	'''	
+}
+
+
+
+implementsGlobalDetails <E> Adapter{
+	'''
+    private LayoutInflater mInflater;
+    private List<${E.name}> itens = new ArrayList<${E.name}>();
+    private int index= 0;
+    private int top = 0;
+    Activity act;
+
+
+    public ${E.name}Adapter(Activity act, List<${E.name}> itens) {
+        this.act = act;        
+        this.itens = itens;        
+        mInflater = LayoutInflater.from(act.getApplicationContext());
+    }	
+    
+    public int getCount(){return itens.size(); }
+    public Product getItem(int position){ return itens.get(position); }
+    public long getItemId(int position){ return position; }
+    
+    
+	'''	
+}
+
+
+implementsGlobal <E, T> getView(position: int, view: View, parent: ViewGroup): View{	
+	'''
+	final ${E.name} item = itens.get(position);
+	view = mInflater.inflate(R.layout.${E.name.substring(0,1).toLowerCase()}${E.name.substring(1)}_item, null);
+	
+	notifyDataSetChanged();
+		
+	#set($count = 1)
+	#foreach($f in $T.attributes)
+	 #if($f.type.name == "img")
+	   ImageView img${count} = (ImageView) view.findViewById(R.id.item_${f.name});
+       img${count}.setImageBitmap(item.get${f.name.substring(0,1).toUpperCase()}${f.name.substring(1)}());
+     #else 
+       TextView tv${count} = (TextView) view.findViewById(R.id.item_${f.name});
+       tv${count}.setText(item.get${f.name.substring(0,1).toUpperCase()}${f.name.substring(1)}()); 
+     #end
+     #set($count = $count + 1)   
+      	  
+	#end
+	return view 
+	
+	'''	
+}
+
+
+
+
+
+implementsGlobalDetails <E, D, L, M> ControllerDetailsGrid{ //Implements basic control class details to build a Grid using Adapter to Android
+	'''  
+ 	#set($list = "")
+	#set($comma = "")
+	#set($nameList = "dataList")	
+    #set($countL = 1)
+	 #foreach($a in $L.attributes)
+	   #if($a.type.name == "linkedHashMap")
+	 public LinkedHashMap<${a.name}, Integer> ${nameList}${a.name} = new LinkedHashMap<>();
+	   #else
+	 public List<${a.name}> ${nameList}${a.name} = new ArrayList<${a.name}>();
+	   
+	   #end
+	   #set($countL = $countL + 1) 	 	   
+	   #set($list = $list + $comma + ${nameList}+${a.name})
+	   #if($foreach.hasNext)
+	    #set($comma = ", ")
+	   #end	     	   
+	 #end 
+	 
+	  
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_${E.name.substring(0,1).toLowerCase()}${E.name.substring(1)});    
+        
+        
+    #set($countAtt = 1)                            
+    #foreach($m in $M.attributes)
+     #if($countAtt > 2) 
+       #if($countAtt == 3)
+        //Declaration of variable in case to get variable from another screen
+        Intent intent = getIntent();
+        ${E.name} obj${E.name} = (${E.name}) Objects.requireNonNull(intent.getExtras()).get("${E.name.substring(0,1).toLowerCase()}${E.name.substring(1)}");
+       #end               
+     	${m.type.name} ${m.name} = obj${E.name}.get${m.name.substring(0,1).toUpperCase()}${m.name.substring(1)}();
+     #end
+     #set($countAtt = $countAtt + 1)
+    #end        
+
+   	#set($countAttM = 1)
+   	#if(${M.attributes.get(0).name}) ##verify if have attributes in entity Method
+        ${M.attributes.get(0).name}(#foreach($a in $M.attributes)#if($countAttM > 2)${a.name}#if($countAttM < ${M.attributes.size()}), #end#end#set($countAttM = $countAttM + 1)#end);
+   	#end   	
+
+    #set($countAttAdapter = 1)                            
+    #foreach($m in $D.attributes)
+     
+       #if($countAttAdapter == 1) 
+         //Instantiate the adapter in case get variable from another screen       
+        ListView listView;
+        listView = findViewById(R.id.list_view);         
+        #set($index = $L.name.indexOf('List'))
+        #set($val1= $L.name.substring(0, $index))         
+        ${E.name}Adapter adapter = new ${E.name}Adapter(${val1}.this, ${list});        
+        listView.setAdapter(adapter);
+       #end
+     
+     #set($countAttAdapter = $countAttAdapter + 1)         
+   #end      
+    }
+	'''
+} 
+	
+	
+implementsGlobalDetails <E, T> ControllerDetails{ //Implements basic control class details for Android
+	'''
+    View myView;
+    
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        
+    }	
+	'''
+} 
+
+
+implementsGlobal <E> onCreated(view: View, savedInstanceState: Bundle): void{
+	'''
+	     super.onCreate(savedInstanceState);
+	     setContentView(R.layout.activity_${E.name});    
+
+	     
+	     
+	'''
+}
+
+
+implementsGlobal <E, T> onViewCreated(savedInstanceState: Bundle): void{
+	'''
+        super.onViewCreated(view, savedInstanceState);
+        getActivity().setTitle("${E.name}");
+        ${E.name}Adapter adapter = new ${E.name}Adapter(
+                getActivity(),
+                R.layout.${E.name}.item_file,
+                list${E.name});
+
+        ListView lv = (ListView)getView().findViewById(R.id.${E.name}_list);
+        lv.setAdapter(adapter);	
+	'''	
+} 
+
+	
+}
+
+
+
+platform WebController: CSharp {
+	
+implementsGlobalDetails <E, D, L, M> ControllerDetailsGrid{ //Implements basic control class details to build a Grid using Adapter to Android
+	'''    
+	#set($nameList = "dataList")
+	#set($countL = 1)
+	#foreach($a in $L.attributes)
+   public List<${a.name}> ${nameList}${a.name} = new List<${a.name}>();
+	#set($countL = $countL + 1) 	   	   
+	#end		
+	
+   #set($countAttM = 1)
+   public ActionResult ${E.name}(#foreach($a in $M.attributes)#if($countAttM > 2)${a.type.name}? ${a.name}#if($countAttM < ${M.attributes.size()}), #end#end#set($countAttM = $countAttM + 1)#end){   	
+   	
+   	#set($countAttM = 1)
+   	#if(${M.attributes.get(0).name}) ##verify if have attributes in entity Method
+	   ${M.attributes.get(0).name}(#foreach($a in $M.attributes)#if($countAttM > 2)${a.name}.Value#if($countAttM < ${M.attributes.size()}), #end#end#set($countAttM = $countAttM + 1)#end);
+   	#end   	
+   	
+    #set($count = 0)
+	#foreach($f in $L.attributes)
+	 #set($count = $count + 1)   
+	#end 
+	#if($count == 1)
+	 #foreach($f in $L.attributes)
+	   return View(${nameList}${f.name});	   
+	 #end	 
+	#end 
+	
+	#set($list = "")
+	#set($comma = "")
+	#if($count >= 2)
+	   #foreach($f in $L.attributes)
+	      #set($list = $list + $comma + ${nameList}+${f.name})
+	      #if($foreach.hasNext)
+	         #set($comma = ", ")
+	      #end     
+	   #end  	
+	   return View(Tuple.Create(${list}));
+	#end	
+  }
+	'''
+} 	
+	
+	
+	
+	
+	
+implementsGlobal <E, T> onViewCreated(): ActionResult{
+'''
+	#set($count = 0)
+	#foreach($f in $T.attributes)
+	 #set($count = $count + 1)   
+	#end
+	
+	#if($count == 1)
+	 #foreach($f in $T.attributes)
+	   return View(${f.name});	   
+	 #end	 
+	#end 
+	
+	#set($list = "")
+	#set($comma = "")
+	#if($count >= 2)
+	   #foreach($f in $T.attributes)
+	      #set($list = $list + $comma +$f.name)
+	      #if($foreach.hasNext)
+	         #set($comma = ", ")
+	      #end     
+	   #end  	
+	 return View(Tuple.Create(${list}));
+	#end 	
+	
+
+'''	
+}
+
+	
+}
+
+
+
+platform iOSController: Swift {
+	
+	
+	
+implementsGlobal <E> getLocation(locValue: CLLocationCoordinate2D, data: list<string>): list<String>{
+	'''
+        var dataGPS = [String]()
+        for dataLocation in data {
+        	#foreach($a in $E.attributes)
+            if (dataLocation == "${a.name}") {
+                dataGPS.append("Longitude: " + String(locValue.${a.name}))                
+            }
+            #end
+        }        
+        return dataGPS	
+	'''
+}	
+	
+	
+	
+implementsGlobalDetails <D> ControllerGPS{
+	'''
+	
+    let locationManager = CLLocationManager()
+    var dataRealLocationList = [String]()
+    dataRealLocationList
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Ask for Authorisation from the User.
+        self.locationManager.requestAlwaysAuthorization()
+        
+        // For use in foreground
+        self.locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
+        useData()
+    }
+    
+
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        
+        var dataLocation = [String]()
+        #foreach($a in $D.attributes)
+          dataLocation.append("${a.name}")
+        #end
+        
+       dataRealLocationList = getLocation(locValue: locValue, data: dataLocation)      
+    
+    }
+	
+	'''
+}	
+	
+	
+	
+	
+implementsGlobalDetails <E, D, L, M> ControllerDetailsGrid{ //Implements basic control class details to build a Grid using TableView to iOS
+	'''
+    
+    @IBOutlet weak var dataTableView: UITableView!  //reference to tableView from storyBoarding
+    private var touchedIndex: Int?                  //reference to row selected 
+    
+	#set($nameList = "dataList")  
+	 #foreach($a in $L.attributes)
+	   var ${nameList}${a.name} = [${a.name}]()    //reference to list populating the table     	   
+	 #end 
+ 
+    #set($countAtt = 1)                            
+    #foreach($m in $M.attributes)
+     #if($countAtt > 2)
+         #if($countAtt == 3) 
+         //Declaration of variable in case to get variable from another screen 
+         #end 
+     	var ${m.name}: ${m.type.name.substring(0,1).toUpperCase()}${m.type.name.substring(1)}?
+     #end
+     #set($countAtt = $countAtt + 1)
+    #end
+    
+                      
+
+    override func viewDidLoad() {
+        super.viewDidLoad()        
+   	#set($countAttM = 1)
+   	#if(${M.attributes.get(0).name}) ##verify if have attributes in entity Method
+        ${M.attributes.get(0).name}(#foreach($a in $M.attributes)#if($countAttM > 2)${a.name}: ${a.name}#if($countAttM < ${M.attributes.size()}), #end#end#set($countAttM = $countAttM + 1)#end)
+   	#end   	
+        
+        
+        dataTableView.delegate = self
+        dataTableView.dataSource = self   
+    }
+    
+   func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dataList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "${E.name}CustomTableViewCell", for: indexPath) as! ${E.name}CustomTableViewCell
+        #foreach($a in $L.attributes)
+         #foreach($f in $D.attributes)
+          #if($f.type.name != "img")	         
+	         cell.${f.name}.text = ${nameList}${a.name}[indexPath.row].${f.name}        
+          #end
+         #end
+         #break     	   
+	    #end 
+        return cell
+     }
+    
+     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.touchedIndex = indexPath.row
+        
+        self.performSegue(withIdentifier: "showAnyViewBySegue", sender: self)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if(segue.identifier == "showAnyViewBySegue"){
+            let controller: AnyViewController = segue.destination as! AnyViewController
+            controller.selectedIndex = touchedIndex
+            if touchedIndex != nil{
+             #foreach($a in $L.attributes)
+              #foreach($f in $D.attributes)
+                  controller.${f.name} = ${nameList}${a.name}[touchedIndex!].${f.name}
+              #end
+              #break
+             #end                 
+            }
+        }
+    }    
+
+    
+
+	
+	'''	
+	
+}
+
+
+
+
+implementsGlobal <E> viewDidLoad(): void{
+	'''
+	     super.viewDidLoad()     
+	     
+	'''
+}
+
+
+
+
+implementsGlobalDetails <E, T> ControllerDetails{ //Implements basic control class details for iOS
+	'''
+    var list${E.name} : [String]?
+    
+    @IBOutlet weak var searchTextField: UITextField!
+    @IBOutlet var resultsTableView : UITableView!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        searchTextField.addTarget(self, action: "textFieldDidChange:", forControlEvents: UIControlEvents.EditingChanged)
+    }
+     
+	
+	'''	
+	
+	
+	
+}
+
+
+
+
+	
+}
+
+
+
+platform AugmentedReality: CSharp {
+		
+	implementsGlobal GetDiskImagesAsync(picturesFolder: StorageFolder): list<img> {
+		'''
+		List<Image> images = new List<Image>();
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(
+            CoreDispatcherPriority.Normal,async () => {
+                IReadOnlyList<IStorageItem> itemsList = await picturesFolder.GetFilesAsync();
+                foreach (var item in itemsList)
+                {
+                    await picturesFolder.TryGetItemAsync(item.Name);
+                    if (item.Path.Contains(".jpg") || item.Path.Contains(".png"))
+                    {
+                        var uri = new System.Uri(item.Path);
+                        var converted = uri.AbsoluteUri;
+                        StorageFile file = await picturesFolder.GetFileAsync(item.Name);
+                        BitmapImage bitmapImage = new BitmapImage();
+                        FileRandomAccessStream stream = (FileRandomAccessStream)await file.OpenAsync(FileAccessMode.Read);
+                        bitmapImage.SetSource(stream);
+                        Image image = new Image();
+                        image.Name = item.Name;
+                        image.Source = bitmapImage;
+                        images.Add(image);
+                    }
+                }
+            });
+            return images;        
+		'''
+	}
+	
+	
+	
+implementsGlobal AddImgtoCanvasAsync(canvas: Canvas, image_: img): Task {
+	'''
+	await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(
+            CoreDispatcherPriority.Normal, () =>
+            {
+                canvas.Children.Clear();
+                var bounds = Window.Current.Bounds;
+                double height = bounds.Height;
+                double width = bounds.Width;
+
+                Image image = new Image()
+                {
+                    Height = height,
+                    Width = width,
+                    Source = image_.Source
+                };
+                Canvas.SetLeft(image, 0);
+                Canvas.SetTop(image, 0);
+                canvas.Children.Add(image);
+    });
+	'''
+	
+}	
+
+
+
+implementsGlobal SocketListenerAsync(): void {
+	'''
+	        Socket listenSock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            listenSock.Bind(new IPEndPoint(IPAddress.Any, 1209));
+            listenSock.Listen(1);// quantidade de conexoes
+            while (true)
+            {
+                if (s_socket)
+                {
+                    byte[] recebida = new byte[1024];
+
+                    using (Socket newConnection = listenSock.Accept())
+                    {
+                        newConnection.Receive(recebida);
+                        string string_msg = Encoding.UTF8.GetString(recebida).Substring(0, Encoding.UTF8.GetString(recebida).IndexOf("\0"));
+                        if (string_msg.Equals("handshake"))
+                        {
+                            byte[] msg_send = Encoding.UTF8.GetBytes("hi");
+                            newConnection.Send(msg_send);
+                        }
+                        else
+                        {
+                            // verificar se possui a imagem
+                            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
+                            {
+                                if (imvideo.Text.Equals("Imagens"))
+                                {
+                                    if (imlocal.Text.Equals("ONLINE"))
+                                    {
+                                        for (int i = 0; i < produtos.Count; i++)
+                                        {
+                                            if ("selectbyname_" + produtos[i].Name == string_msg)
+                                            {
+                                                canvas.Children.Clear();
+                                                canvas.Children.Add(imagens[i]);
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        for(int i = 0; i < imagens.Count; i++)
+                                        {
+                                            Debug.WriteLine(string_msg);
+                                            Debug.WriteLine(imagens[i].Name.Substring(0, imagens[i].Name.Length - 4));
+                                            if ("selectbyname_" + imagens[i].Name.Substring(0, imagens[i].Name.Length-4) == string_msg)
+                                            {
+                                                canvas.Children.Clear();
+                                                canvas.Children.Add(imagens[i]);
+                                            }
+                                        }
+                                    }
+                                }
+                            });
+                        }
+                    }
+                }
+        }
+'''
+	
+	
+}
+
+
+
+
+	
+}
+
+
+platform AndroidSmartWatch: Java {
+	
+implementsGlobalDetails <E, D, L, M> ControllerDetailsGrid{ //Implements basic control class details to build a Grid using Adapter to Android
+	'''  
+ 	#set($list = "")
+	#set($comma = "")
+	#set($nameList = "dataList")	
+    #set($countL = 1)
+	 #foreach($a in $L.attributes)
+	   #if($a.type.name == "linkedHashMap")
+	 public LinkedHashMap<${a.name}, Integer> ${nameList}${a.name} = new LinkedHashMap<>();
+	   #else
+	 public List<${a.name}> ${nameList}${a.name} = new ArrayList<${a.name}>();
+	   
+	   #end
+	   #set($countL = $countL + 1) 	 	   
+	   #set($list = $list + $comma + ${nameList}+${a.name})
+	   #if($foreach.hasNext)
+	    #set($comma = ", ")
+	   #end	     	   
+	 #end 
+	 
+	  
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_${E.name.substring(0,1).toLowerCase()}${E.name.substring(1)});    
+        
+        
+    #set($countAtt = 1)                            
+    #foreach($m in $M.attributes)
+     #if($countAtt > 2) 
+       #if($countAtt == 3)
+        //Declaration of variable in case to get variable from another screen
+        Intent intent = getIntent();
+        ${E.name} obj${E.name} = (${E.name}) Objects.requireNonNull(intent.getExtras()).get("${E.name.substring(0,1).toLowerCase()}${E.name.substring(1)}");
+       #end               
+     	${m.type.name} ${m.name} = obj${E.name}.get${m.name.substring(0,1).toUpperCase()}${m.name.substring(1)}();
+     #end
+     #set($countAtt = $countAtt + 1)
+    #end        
+
+   	#set($countAttM = 1)
+   	#if(${M.attributes.get(0).name}) ##verify if have attributes in entity Method
+        ${M.attributes.get(0).name}(#foreach($a in $M.attributes)#if($countAttM > 2)${a.name}#if($countAttM < ${M.attributes.size()}), #end#end#set($countAttM = $countAttM + 1)#end);
+   	#end   	
+
+    #set($countAttAdapter = 1)                            
+    #foreach($m in $D.attributes)
+     
+       #if($countAttAdapter == 1) 
+         //Instantiate the adapter in case get variable from another screen       
+        ListView listView;
+        listView = findViewById(R.id.list_view);         
+        #set($index = $L.name.indexOf('List'))
+        #set($val1= $L.name.substring(0, $index))         
+        ${E.name}WatchAdapter adapter = new ${E.name}WatchAdapter(${val1}.this, ${list});        
+        listView.setAdapter(adapter);
+       #end
+     
+     #set($countAttAdapter = $countAttAdapter + 1)         
+   #end      
+    }
+	'''
+}
+
+
+
+
+implementsGlobal onDataChanged(dataEvents: DataEventBuffer): void{
+		'''
+        for (DataEvent event : dataEvents) { //get data by bloutooth
+            if (event.getType() == DataEvent.TYPE_CHANGED) {
+                DataItem item = event.getDataItem();
+                if (item.getUri().getPath().compareTo("/count") == 0) {
+                    DataMap dataMap = DataMapItem.fromDataItem(item).getDataMap();
+                    Product val = dataMap.getString(COUNT_KEY);
+                    if(val != null){                        
+                        dataListProduct.clear();
+                        dataListProduct.addAll(product);
+                        dataListProduct.deferNotifyDataSetChanged();
+                        adapter.notifyDataSetChanged();
+                    }
+                }
+            } else if (event.getType() == DataEvent.TYPE_DELETED) {
+                // DataItem deleted
+            }
+        }	
+		'''
+}
+ 	
+	
+	
+	
+}
+
+
+
+
+
+platform UnitTestingAndroid: Java { 
+implementsGlobalDetails UnitTestAnnotation{
+	'''@Test'''		
+}	
+
+implementsGlobal <E> assertEqualsClassConfiguration(): void{
+	'''
+	assertEquals(#foreach($a in $E.attributes)${a.name}#if($foreach.hasNext) , #end#end);	
+	'''
+}
+
+implementsGlobal assertEqualsParam(expected: double, actual: double, msg: string): void{
+	'''
+	assertEquals(expected, actual, msg);	
+	'''	
+	
+}
+
+}
+
+
+
+platform UnitTestingWeb: CSharp {
+implementsGlobalDetails UnitTestAnnotation{
+'''[TestMethod]'''		
+}	
+
+implementsGlobal <E> assertEqualsClassConfiguration(): void{
+	'''
+	Assert.AreEqual(#foreach($a in $E.attributes)${a.name}#if($foreach.hasNext) , #end#end);	
+	'''
+}
+
+implementsGlobal assertEqualsParam(expected: double, actual: double, msg: string): void{
+	'''
+	Assert.AreEqual(expected, actual, msg);	
+	'''		
+}
+
+}
+
+platform UnitTestingiOS: Swift {
+  implementsGlobalDetails UnitTestAnnotation{
+    ''''''		
+  }
+  implementsGlobal <E> assertEqualsClassConfiguration(): void{
+	'''
+	XCTAssertEqual(#foreach($a in $E.attributes)${a.name}#if($foreach.hasNext) , #end#end);	
+	'''
+  }
+  implementsGlobal assertEqualsParam(expected: double, actual: double, msg: string): void{
+	'''
+	XCTAssertEqual(expected, actual, msg);
+	'''
+  }
+}
+
+
+
+

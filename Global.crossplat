@@ -1,0 +1,80 @@
+//CRUD
+
+
+/*
+globalController <E> InsertObject2(e: <E>): string
+globalController <E> InsertObject(e: <E>): string                        //cross
+globalController <E> UpdateObject(e: <E>): string                        //cross
+globalController <E> DeleteObject(e: <E>): string                        //cross
+globalController <E> SelectObject(ord: string): list<E>                  //cross
+globalController <E> SelectSpecificIdObject(e: <E>, id: int): <E>        //cross
+globalController <E> SelectSqlSpecific(e: <E>, sqlString: string): <E>   //cross
+
+//GPS
+globalController <E> LocationGPS(): <E>                                 //mobile
+globalController RouteData(): void
+globalController onMapReady(): void
+*/
+
+
+global <E> InsertObject2(e: <E>): string
+global <E> InsertObject(e: <E>): string                        //cross
+global <E> UpdateObject(e: <E>): string                        //cross
+global <E> DeleteObject(e: <E>): string                        //cross
+global <E> SelectObject(ord: string): list<E>                  //cross
+global <E> SelectSpecificIdObject(e: <E>, id: int): <E>        //cross
+global <E> SelectSqlSpecific(e: <E>, sqlString: string): <E>   //cross
+global onDataChanged(): void                                   //smartWatch
+
+//GPS
+global <E> LocationGPS(): <E>                                 //mobile
+global RouteData(): void
+global onMapReady(): void
+
+
+//Entity
+globalDetails <E> DBConnection                                     //cross
+globalDetails  <E> Adapter                                      //android
+globalDetails  <E, T> ControllerDetails                         //mobile
+
+globalDetails  <E, D, L, M> ControllerDetailsGrid                  //Cross. E-Entity D-Data L-List
+
+
+
+globalDetails  <D> ControllerGPS                       //iOS and Android
+global <E> getLocation(): list<string>                 //iOS and Android
+
+
+
+globalDetails UnitTestAnnotation                       
+global assertEqualsParam(expected: double, actual: double, msg: string): void
+global <E> assertEqualsClassConfiguration(): void
+
+
+
+
+
+//globalDetails  <E, T> ControllerDetailsGrid
+
+
+
+//Controller
+global <E, T> getView(): <E>                              //android 
+global <T> tableView(): <T>                               //iOS
+global <E, T> onViewCreated(): <E>                        //cross
+
+global <E> onCreated(): void                             //Android
+global <E> viewDidLoad(): int                           //iOS 
+
+
+global GetDiskImagesAsync(picturesFolder: StorageFolder): list<img>  //RA Platform 
+global AddImgtoCanvasAsync(canvas: Canvas, image_: img): Task        //RA Platform
+global SocketListenerAsync(): void                                   //RA Platform Listener socket sign
+global Send_recv(message: string): string                            //Android Send message 
+
+
+
+
+
+
+
